@@ -2,12 +2,18 @@ package teste;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import domain.Curso;
+import domain.DiaDaSemana;
 import domain.Disciplina;
 import domain.Fase;
+import domain.GradeHorario;
 import domain.Horario;
+import domain.HorarioAula;
+import domain.HorarioNoDia;
 import domain.Professor;
 
 public class QlqrCoisaTest {
@@ -60,7 +66,7 @@ public class QlqrCoisaTest {
 		
 		assertEquals(0, disciplina.getHorarios().size());
 		
-		Horario horario = new Horario();
+		Horario horario = new Horario(DiaDaSemana.SEGUNDA_FEIRA, HorarioNoDia.PRIMEIRO_HORARIO);
 		disciplina.addHorario(horario);
 		
 		assertEquals(1, disciplina.getHorarios().size());
@@ -70,7 +76,7 @@ public class QlqrCoisaTest {
 	public void testeProfessorTemHorariosDisponiveis(){
 		Professor professor = new Professor();
 		
-		Horario horario = new Horario();
+		Horario horario = new Horario(DiaDaSemana.SEGUNDA_FEIRA, HorarioNoDia.PRIMEIRO_HORARIO);
 		
 		professor.addHorario(horario);
 		
@@ -81,5 +87,37 @@ public class QlqrCoisaTest {
 		
 		assertEquals(0, professor.getHorariosDisponiveis().size());
 	}
-
+	
+	
+	@Test
+	public void testeAlocacaoParaUmCursoComUmaDisciplinaEUmProfessor()
+	{
+		Curso curso = new Curso();
+		Professor professor = new Professor();
+		
+		DiaDaSemana segundaFeira = DiaDaSemana.SEGUNDA_FEIRA;
+		HorarioNoDia primeiroHorario = HorarioNoDia.PRIMEIRO_HORARIO;
+		
+		Horario horario = new Horario(segundaFeira, primeiroHorario);
+		professor.addHorario(horario);
+		
+		curso.addProfessor(professor);
+		
+		Fase fase = new Fase();
+		Disciplina disciplina = new Disciplina();
+		disciplina.addHorario(horario);
+		fase.addDisciplinas(disciplina);
+		
+		curso.addFase(fase);
+		
+		List<Fase> gradeCurso = curso.executeAlocacao();
+		
+		assertEquals(1, gradeCurso.size());
+		GradeHorario gradeFase = gradeCurso.get(0).getGradeHorario();
+		
+		HorarioAula actual = gradeFase.getGradeHoraria()[segundaFeira.ordinal()][primeiroHorario.ordinal()];
+		
+		assertEquals(professor, actual.getProfessor());
+	}
+	
 }

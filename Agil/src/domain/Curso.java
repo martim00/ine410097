@@ -25,4 +25,9 @@ public class Curso {
 		return professores;
 	}
 
+	public List<Fase> executeAlocacao() {
+		// TODO: fazer o algoritmo
+		return null;
+	}
+
 }
