@@ -1,11 +1,15 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Professor {
 	
 	private List<StatusHorario> horarios = new ArrayList<StatusHorario>();
+	
+	private Set<AreaConhecimento> areasDeAtuacao = new HashSet<AreaConhecimento>();
 
 	public void addHorario(Horario horario) {
 		StatusHorario statusHorario = new StatusHorario(horario, true);
@@ -77,5 +81,32 @@ public class Professor {
 		}
  			
  	}
+
+	/**
+	 * Aloca o primeiro horario disponível do professor e retorna o mesmo.
+	 * 
+	 * @pre Professor deve ter algum horário disponível => <code>assert(this.temHorarioDisponivel());</code>
+	 * @return
+	 */
+	public Horario aloqueHorario() {
+		
+		assert(temHorarioDisponivel());
+		
+		Horario primeiroHorarioDisponivel = this.getHorariosDisponiveis().get(0);
+		this.alocaHorario(primeiroHorarioDisponivel);
+		return primeiroHorarioDisponivel;
+	}
+
+	public boolean atuaNaArea(AreaConhecimento area) {
+		return this.areasDeAtuacao.contains(area);
+	}
+
+	public void addAreaDeAtuacao(AreaConhecimento areaAtuacao) {
+		this.areasDeAtuacao.add(areaAtuacao);						
+	}
+
+	public boolean temHorarioDisponivel() {
+		return !this.getHorariosDisponiveis().isEmpty();
+	}
 
 }

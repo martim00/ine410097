@@ -5,7 +5,13 @@ import java.util.List;
 
 public class Disciplina {
 	
-	private List<Horario> horarios = new ArrayList<Horario>(); 
+	private List<Horario> horarios = new ArrayList<Horario>();
+	
+	private AreaConhecimento area = null;
+	
+	public Disciplina(AreaConhecimento area) {
+		this.area = area;
+	}
 
 	public List<Horario> getHorarios() {
 		return horarios;
@@ -13,6 +19,11 @@ public class Disciplina {
 
 	public void addHorario(Horario horario) {
 		horarios.add(horario);
+	}
+
+	public AreaConhecimento getArea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

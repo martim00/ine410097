@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import domain.AreaConhecimento;
 import domain.Curso;
 import domain.DiaDaSemana;
 import domain.Disciplina;
@@ -15,6 +18,7 @@ import domain.Horario;
 import domain.HorarioAula;
 import domain.HorarioNoDia;
 import domain.Professor;
+import domain.ProfessorNaoEncontradoParaDisciplinaException;
 
 public class QlqrCoisaTest {
 
@@ -40,7 +44,7 @@ public class QlqrCoisaTest {
 
 		assertEquals(0,fase.getDisciplinas().size());
 
-		Disciplina disc = new Disciplina();
+		Disciplina disc = new Disciplina(new AreaConhecimento("algoritmos"));
 		fase.addDisciplinas(disc);
 
 		assertEquals(1, fase.getDisciplinas().size());
@@ -62,7 +66,7 @@ public class QlqrCoisaTest {
 	
 	@Test
 	public void testeDisciplinaHorarios(){
-		Disciplina disciplina = new Disciplina();
+		Disciplina disciplina = new Disciplina(new AreaConhecimento("algoritmos"));
 		
 		assertEquals(0, disciplina.getHorarios().size());
 		
@@ -89,8 +93,8 @@ public class QlqrCoisaTest {
 	}
 	
 	
-	@Test
-	public void testeAlocacaoParaUmCursoComUmaDisciplinaEUmProfessor()
+	@Test()
+	public void testeAlocacaoParaUmCursoComUmaDisciplinaEUmProfessor() throws ProfessorNaoEncontradoParaDisciplinaException
 	{
 		Curso curso = new Curso();
 		Professor professor = new Professor();
@@ -104,7 +108,7 @@ public class QlqrCoisaTest {
 		curso.addProfessor(professor);
 		
 		Fase fase = new Fase();
-		Disciplina disciplina = new Disciplina();
+		Disciplina disciplina = new Disciplina(new AreaConhecimento("algoritmos"));
 		disciplina.addHorario(horario);
 		fase.addDisciplinas(disciplina);
 		
@@ -118,6 +122,16 @@ public class QlqrCoisaTest {
 		HorarioAula actual = gradeFase.getGradeHoraria()[segundaFeira.ordinal()][primeiroHorario.ordinal()];
 		
 		assertEquals(professor, actual.getProfessor());
+	}
+	
+	void testProfessorPossueAreasDeAtuacao() {
+		
+		Professor professor = new Professor();
+		AreaConhecimento areaAtuacao = new AreaConhecimento("Banco de dados");
+		professor.addAreaDeAtuacao(areaAtuacao);		
+		
+		assertEquals(true, professor.atuaNaArea(areaAtuacao));
+		
 	}
 	
 }
