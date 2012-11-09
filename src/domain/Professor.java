@@ -83,9 +83,9 @@ public class Professor {
  	}
 
 	/**
-	 * Aloca o primeiro horario disponível do professor e retorna o mesmo.
+	 * Aloca o primeiro horario disponivel do professor e retorna o mesmo.
 	 * 
-	 * @pre Professor deve ter algum horário disponível => <code>assert(this.temHorarioDisponivel());</code>
+	 * @pre Professor deve ter algum horario disponivel => <code>assert(this.temHorarioDisponivel());</code>
 	 * @return
 	 */
 	public Horario aloqueHorario() {

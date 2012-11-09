@@ -27,11 +27,11 @@ public class Curso {
 	
 	
 	/**
-	 * Tenta alocar um professor para a disciplina passada. Leva em consideração a area de atuação do professor fecha com a area da disciplina 
-	 * e se o mesmo tem horário disponível.
+	 * Tenta alocar um professor para a disciplina passada. Leva em consideracao a area de atuacao do professor fecha com a area da disciplina 
+	 * e se o mesmo tem horario disponivel.
 	 * 
 	 * @param disciplina 
-	 * @throws ProfessorNaoEncontradoParaDisciplinaException caso não encontre nenhum professor que possa ministrar a disciplina
+	 * @throws ProfessorNaoEncontradoParaDisciplinaException caso nao encontre nenhum professor que possa ministrar a disciplina
 	 */
 	private void aloqueProfessorParaDisciplina(Disciplina disciplina, Fase fase) throws ProfessorNaoEncontradoParaDisciplinaException {
 		
@@ -60,8 +60,8 @@ public class Curso {
 	}
 
 	/**
-	 *  Retorna uma lista de Fase aonde cada elemento da lista é a uma fase do curso com uma grade horária alocada.
-	 *	Para pegar a grade horária use o método <code>getGradeHorario()</code> da classe <code>Fase</code>
+	 *  Retorna uma lista de Fase aonde cada elemento da lista e a uma fase do curso com uma grade horaria alocada.
+	 *	Para pegar a grade horaria use o metodo <code>getGradeHorario()</code> da classe <code>Fase</code>
 	 * @return List<Fase> - a lista ordenada das fases (primeiro elemento - primeira fase, segundo elemento - segunda fase, etc)
 	 * @throws ProfessorNaoEncontradoParaDisciplinaException 
 	 */
@@ -75,7 +75,7 @@ public class Curso {
 					
 				} catch (ProfessorNaoEncontradoParaDisciplinaException exception) {
 					
-					// TODO: ver o que fazer caso não exista nenhum professor disponível para essa disciplina
+					// TODO: ver o que fazer caso nao exista nenhum professor disponivel para essa disciplina
 					throw exception;
 					
 				}
