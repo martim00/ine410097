@@ -14,8 +14,12 @@ public class Fase {
 		return disciplinas;
 	}
 
-	public void addDisciplinas(Disciplina disc) {
+	public void addDisciplina(Disciplina disc) {
 		disciplinas.add(disc);
+	}
+	
+	public void addDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas.addAll(disciplinas);
 	}
 	
 	public boolean temAulaNesteHorario(Horario horario) {

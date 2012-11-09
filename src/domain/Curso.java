@@ -66,6 +66,7 @@ public class Curso {
 	 * @throws ProfessorNaoEncontradoParaDisciplinaException 
 	 */
 	public List<Fase> executeAlocacao() throws ProfessorNaoEncontradoParaDisciplinaException {
+		
 		for (Fase fase : fases) {
 			
 			for (Disciplina disciplina : fase.getDisciplinas()) {
@@ -82,6 +83,14 @@ public class Curso {
 			}
 		}
 		return fases;
+	}
+
+	public void addProfessores(List<Professor> professores) {
+		this.professores.addAll(professores);
+	}
+
+	public void addFases(List<Fase> fases) {		
+		this.fases.addAll(fases);		
 	}
 
 }

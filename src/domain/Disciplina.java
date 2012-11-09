@@ -24,5 +24,9 @@ public class Disciplina {
 	public AreaConhecimento getArea() {
 		return area;
 	}
+	
+	public void setArea(AreaConhecimento area) {
+		this.area = area;		
+	}
 
 }
