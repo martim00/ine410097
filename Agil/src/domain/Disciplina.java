@@ -22,8 +22,7 @@ public class Disciplina {
 	}
 
 	public AreaConhecimento getArea() {
-		// TODO Auto-generated method stub
-		return null;
+		return area;
 	}
 
 }

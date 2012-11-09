@@ -105,11 +105,15 @@ public class QlqrCoisaTest {
 		Horario horario = new Horario(segundaFeira, primeiroHorario);
 		professor.addHorario(horario);
 		
+		AreaConhecimento area = new AreaConhecimento("algoritmos");
+
+		professor.addAreaDeAtuacao(area);
+		
 		curso.addProfessor(professor);
 		
 		Fase fase = new Fase();
-		Disciplina disciplina = new Disciplina(new AreaConhecimento("algoritmos"));
-		disciplina.addHorario(horario);
+		Disciplina disciplina = new Disciplina(area);
+		//disciplina.addHorario(horario);
 		fase.addDisciplinas(disciplina);
 		
 		curso.addFase(fase);
@@ -124,7 +128,8 @@ public class QlqrCoisaTest {
 		assertEquals(professor, actual.getProfessor());
 	}
 	
-	void testProfessorPossueAreasDeAtuacao() {
+	@Test()
+	public void testProfessorPossueAreasDeAtuacao() {
 		
 		Professor professor = new Professor();
 		AreaConhecimento areaAtuacao = new AreaConhecimento("Banco de dados");

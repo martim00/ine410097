@@ -41,6 +41,7 @@ public class Curso {
 				
 				Horario horario = professor.aloqueHorario();
 				disciplina.addHorario(horario);
+				return;
 			}
 		}
 		

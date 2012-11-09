@@ -19,6 +19,7 @@ public class Fase {
 	}
 
 	public GradeHorario getGradeHorario() {
+		
 		return grade;
 	}
 
