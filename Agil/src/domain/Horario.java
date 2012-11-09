@@ -10,4 +10,20 @@ public class Horario {
 		this.horarioNoDia = horarioNoDia;
 	}
 
+	public DiaDaSemana getDiaDaSemana() {
+		return diaDaSemana;
+	}
+
+	public void setDiaDaSemana(DiaDaSemana diaDaSemana) {
+		this.diaDaSemana = diaDaSemana;
+	}
+
+	public HorarioNoDia getHorarioNoDia() {
+		return horarioNoDia;
+	}
+
+	public void setHorarioNoDia(HorarioNoDia horarioNoDia) {
+		this.horarioNoDia = horarioNoDia;
+	}
+
 }

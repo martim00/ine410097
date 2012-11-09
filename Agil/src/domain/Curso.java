@@ -33,14 +33,24 @@ public class Curso {
 	 * @param disciplina 
 	 * @throws ProfessorNaoEncontradoParaDisciplinaException caso não encontre nenhum professor que possa ministrar a disciplina
 	 */
-	private void aloqueProfessorParaDisciplina(Disciplina disciplina) throws ProfessorNaoEncontradoParaDisciplinaException {
+	private void aloqueProfessorParaDisciplina(Disciplina disciplina, Fase fase) throws ProfessorNaoEncontradoParaDisciplinaException {
 		
 		for (Professor professor : professores) {
 			
 			if (professor.atuaNaArea(disciplina.getArea()) && professor.temHorarioDisponivel()) {
 				
-				Horario horario = professor.aloqueHorario();
-				disciplina.addHorario(horario);
+				List<Horario> horariosDisponiveis = professor.getHorariosDisponiveis();
+				
+				for (Horario horarioDisponivel : horariosDisponiveis) {
+					
+					if (!fase.temAulaNesteHorario(horarioDisponivel)) {
+						
+						professor.alocaHorario(horarioDisponivel);
+						disciplina.addHorario(horarioDisponivel);
+						fase.alocaHorarioParaDisciplina(horarioDisponivel, disciplina, professor);
+					}
+				}
+				
 				return;
 			}
 		}
@@ -61,7 +71,7 @@ public class Curso {
 			for (Disciplina disciplina : fase.getDisciplinas()) {
 				
 				try {					
-					this.aloqueProfessorParaDisciplina(disciplina);
+					this.aloqueProfessorParaDisciplina(disciplina, fase);
 					
 				} catch (ProfessorNaoEncontradoParaDisciplinaException exception) {
 					
