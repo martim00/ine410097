@@ -113,7 +113,6 @@ public class QlqrCoisaTest {
 		
 		Fase fase = new Fase();
 		Disciplina disciplina = new Disciplina(area);
-		//disciplina.addHorario(horario);
 		fase.addDisciplinas(disciplina);
 		
 		curso.addFase(fase);
