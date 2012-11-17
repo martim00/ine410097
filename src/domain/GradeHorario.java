@@ -13,9 +13,9 @@ public class GradeHorario {
 	}
 
 	/**
-	 * Verifica se já existe aula neste horário. Faz isso verificando se a posição da matriz <code>gradeHoraria</code> é null
+	 * Verifica se ja existe aula neste horario. Faz isso verificando se a posicao da matriz <code>gradeHoraria</code> e null
 	 * @param horario
-	 * @return true se já tiver aula alocada neste horário
+	 * @return true se ja tiver aula alocada neste horario
 	 */
 	public boolean temAulaNesteHorario(Horario horario) {
 		return gradeHoraria[horario.getDiaDaSemana().ordinal()][horario.getHorarioNoDia().ordinal()] != null;

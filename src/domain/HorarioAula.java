@@ -11,8 +11,7 @@ public class HorarioAula {
 		this.professor = professor;
 		this.horario = horario;
 	}
-
-
+	
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
