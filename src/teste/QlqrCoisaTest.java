@@ -228,7 +228,7 @@ public class QlqrCoisaTest {
 		
 		
 		Curso curso = setupCurso(professores, fases);
-		//List<Fase> result = curso.executeAlocacao();
+		List<Fase> result = curso.executeAlocacao();
 		
 		// TODO: fazer assercoes...
 				
