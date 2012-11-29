@@ -45,7 +45,7 @@ public class QlqrCoisaTest {
 
 		assertEquals(0,fase.getDisciplinas().size());
 
-		Disciplina disc = new Disciplina(new AreaConhecimento("algoritmos"));
+		Disciplina disc = new Disciplina(new AreaConhecimento("algoritmos"), "");
 		fase.addDisciplina(disc);
 
 		assertEquals(1, fase.getDisciplinas().size());
@@ -58,7 +58,7 @@ public class QlqrCoisaTest {
 
 		assertEquals(0,curso.getProfessores().size());
 
-		Professor professor = new Professor();
+		Professor professor = new Professor("");
 		curso.addProfessor(professor);
 
 		assertEquals(1, curso.getProfessores().size());
@@ -67,7 +67,7 @@ public class QlqrCoisaTest {
 	
 	@Test
 	public void testeDisciplinaHorarios(){
-		Disciplina disciplina = new Disciplina(new AreaConhecimento("algoritmos"));
+		Disciplina disciplina = new Disciplina(new AreaConhecimento("algoritmos"), "");
 		
 		assertEquals(0, disciplina.getHorarios().size());
 		
@@ -79,7 +79,7 @@ public class QlqrCoisaTest {
 	
 	@Test
 	public void testeProfessorTemHorariosDisponiveis(){
-		Professor professor = new Professor();
+		Professor professor = new Professor("");
 		
 		Horario horario = new Horario(DiaDaSemana.SEGUNDA_FEIRA, HorarioNoDia.PRIMEIRO_HORARIO);
 		
@@ -105,14 +105,14 @@ public class QlqrCoisaTest {
 		
 		AreaConhecimento area = new AreaConhecimento("algoritmos");
 		
-		Professor professor = new Professor();
+		Professor professor = new Professor("");
 		professor.addHorario(horario);		
 		professor.addAreaDeAtuacao(area);
 		
 		curso.addProfessor(professor);
 		
 		Fase fase = new Fase();
-		Disciplina disciplina = new Disciplina(area);		
+		Disciplina disciplina = new Disciplina(area, "");		
 		fase.addDisciplina(disciplina);
 		
 		curso.addFase(fase);
@@ -154,7 +154,7 @@ public class QlqrCoisaTest {
 	
 	private class BuildProfessor {
 		
-		Professor professor = new Professor();
+		Professor professor = new Professor("");
 		
 		public BuildProfessor withHorario(DiaDaSemana diaDaSemana, HorarioNoDia horarioNoDia) {
 			professor.addHorario(new Horario(diaDaSemana, horarioNoDia));			
@@ -166,6 +166,11 @@ public class QlqrCoisaTest {
 			return this;
 		}
 		
+		public BuildProfessor withNome(String nome) {
+			professor.setNome(nome);
+			return this;
+		}
+		
 		public Professor build() {
 			return professor;
 		}
@@ -173,7 +178,7 @@ public class QlqrCoisaTest {
 	
 	private class BuildDisciplina {
 		
-		Disciplina disciplina = new Disciplina(null);
+		Disciplina disciplina = new Disciplina(null, "");
 		
 		public BuildDisciplina withHorario(DiaDaSemana diaDaSemana, HorarioNoDia horarioNoDia) {
 			disciplina.addHorario(new Horario(diaDaSemana, horarioNoDia));			
@@ -188,6 +193,11 @@ public class QlqrCoisaTest {
 		public Disciplina build() {
 			return disciplina;
 		}
+
+		public BuildDisciplina withNome(String nome) {
+			disciplina.setNome(nome);
+			return this;
+		}
 	}
 	
 	@Test()
@@ -196,12 +206,14 @@ public class QlqrCoisaTest {
 		List<Professor> professores = new ArrayList<Professor>();
 		professores.add(
 				new BuildProfessor()
+					.withNome("Jose")
 					.withHorario(DiaDaSemana.SEGUNDA_FEIRA, HorarioNoDia.PRIMEIRO_HORARIO)
 					.withAreaDeAtuacao("BD").build()
 				);
 		
 		professores.add(
 				new BuildProfessor()
+					.withNome("Joao")
 					.withHorario(DiaDaSemana.TERCA_FEIRA, HorarioNoDia.SEGUNDO_HORARIO)
 					.withAreaDeAtuacao("SO").build()
 				);
@@ -211,6 +223,7 @@ public class QlqrCoisaTest {
 				new BuildDisciplina()
 					.withArea("BD")
 					.withHorario(DiaDaSemana.SEGUNDA_FEIRA, HorarioNoDia.PRIMEIRO_HORARIO)
+					.withNome("Introducao a BD")
 					.build()
 				);
 		
@@ -218,6 +231,7 @@ public class QlqrCoisaTest {
 				new BuildDisciplina()
 					.withArea("SO")
 					.withHorario(DiaDaSemana.TERCA_FEIRA, HorarioNoDia.SEGUNDO_HORARIO)
+					.withNome("Introducao a SO")
 					.build()
 				);
 		
@@ -230,14 +244,26 @@ public class QlqrCoisaTest {
 		Curso curso = setupCurso(professores, fases);
 		List<Fase> result = curso.executeAlocacao();
 		
-		// TODO: fazer assercoes...
+		HorarioAula[][] horarios = result.get(0).getGradeHorario().getGradeHoraria();
+		HorarioAula segundaFeiraPrimeiroHorario = 
+				horarios[DiaDaSemana.SEGUNDA_FEIRA.ordinal()][HorarioNoDia.PRIMEIRO_HORARIO.ordinal()];
+		
+		HorarioAula tercaFeiraPrimeiroHorario = 
+				horarios[DiaDaSemana.TERCA_FEIRA.ordinal()][HorarioNoDia.SEGUNDO_HORARIO.ordinal()];	
+		
+		
+		assertEquals("Jose", segundaFeiraPrimeiroHorario.getProfessor().getNome());
+		assertEquals("Introducao a BD", segundaFeiraPrimeiroHorario.getDisciplina().getNome());		
+		
+		assertEquals("Joao", tercaFeiraPrimeiroHorario.getProfessor().getNome());
+		assertEquals("Introducao a SO", tercaFeiraPrimeiroHorario.getDisciplina().getNome());
 				
 	}
 	
 	@Test()
 	public void testProfessorPossueAreasDeAtuacao() {
 		
-		Professor professor = new Professor();
+		Professor professor = new Professor("");
 		AreaConhecimento areaAtuacao = new AreaConhecimento("Banco de dados");
 		professor.addAreaDeAtuacao(areaAtuacao);		
 		

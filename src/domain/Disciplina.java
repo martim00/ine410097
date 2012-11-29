@@ -9,8 +9,11 @@ public class Disciplina {
 	
 	private AreaConhecimento area = null;
 	
-	public Disciplina(AreaConhecimento area) {
+	private String nome = null;
+	
+	public Disciplina(AreaConhecimento area, String nome) {
 		this.area = area;
+		this.nome = nome;
 	}
 
 	public List<Horario> getHorarios() {
@@ -27,6 +30,14 @@ public class Disciplina {
 	
 	public void setArea(AreaConhecimento area) {
 		this.area = area;		
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

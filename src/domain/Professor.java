@@ -10,6 +10,20 @@ public class Professor {
 	private List<StatusHorario> horarios = new ArrayList<StatusHorario>();
 	
 	private Set<AreaConhecimento> areasDeAtuacao = new HashSet<AreaConhecimento>();
+	
+	private String nome = new String();
+	
+	public Professor(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public void addHorario(Horario horario) {
 		StatusHorario statusHorario = new StatusHorario(horario, true);
@@ -108,5 +122,7 @@ public class Professor {
 	public boolean temHorarioDisponivel() {
 		return !this.getHorariosDisponiveis().isEmpty();
 	}
+
+	
 
 }
