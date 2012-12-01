@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="Agil">
+	
+	<target description="build and test all projects" name="build-and-test">
+		<ant dir="model" target="build-and-test" />
+	</target>
+</project>
