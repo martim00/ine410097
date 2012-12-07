@@ -1,4 +1,4 @@
-package teste;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -273,18 +273,11 @@ public class QlqrCoisaTest {
 
 	@Test
 	public void testSave() {
-		try {
-			EntityManager entityManager = Persistence
-					.createEntityManagerFactory("teste.agil")
-					.createEntityManager();
-			AreaConhecimento area = new AreaConhecimento("teste");
-			entityManager.getTransaction().begin();
-			entityManager.persist(area);
-			entityManager.getTransaction().commit();
-			entityManager.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		EntityManager entityManager = Persistence.createEntityManagerFactory(
+				"teste.agil").createEntityManager();
+		AreaConhecimento area = new AreaConhecimento("teste");
+		entityManager.merge(area);
+
 	}
 
 }
