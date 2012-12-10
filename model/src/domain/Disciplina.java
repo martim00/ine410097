@@ -3,6 +3,14 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+//@Entity
+//@Table(name = "disciplina")
 public class Disciplina {
 	
 	private List<Horario> horarios = new ArrayList<Horario>();
@@ -24,6 +32,8 @@ public class Disciplina {
 		horarios.add(horario);
 	}
 
+	@OneToOne
+	@JoinColumn(name="id_area")
 	public AreaConhecimento getArea() {
 		return area;
 	}
@@ -32,6 +42,7 @@ public class Disciplina {
 		this.area = area;		
 	}
 
+	@Column(name = "nome")
 	public String getNome() {
 		return this.nome;
 	}

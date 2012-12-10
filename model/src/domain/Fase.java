@@ -3,6 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+//@Entity
+//@Table(name = "fase")
 public class Fase {	
 	
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();

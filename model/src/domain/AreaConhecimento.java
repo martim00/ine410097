@@ -1,42 +1,47 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="AREA")
+//@Entity
+//@Table(name = "areaconhecimento")
 public class AreaConhecimento {
-	
-	private long id;
-	private String nomeArea = null;
 
-	public AreaConhecimento() {}
-	
-	public AreaConhecimento(String nomeArea) {		
+	private long id;
+	private String nome = null;
+
+	public AreaConhecimento() {
+	}
+
+	public AreaConhecimento(String nomeArea) {
 		this.setNomeArea(nomeArea);
 	}
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name = "id")
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	@Column(name="NAME", nullable=false)
-	public String getNomeArea() {
-		return nomeArea;
+	@Column(name = "nome")
+	public String getNome() {
+		return nome;
 	}
 
 	public void setNomeArea(String nomeArea) {
-		this.nomeArea = nomeArea;
+		this.nome = nomeArea;
 	}
 
 	@Override
@@ -44,7 +49,7 @@ public class AreaConhecimento {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((nomeArea == null) ? 0 : nomeArea.hashCode());
+				+ ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -57,12 +62,20 @@ public class AreaConhecimento {
 		if (getClass() != obj.getClass())
 			return false;
 		AreaConhecimento other = (AreaConhecimento) obj;
-		if (nomeArea == null) {
-			if (other.nomeArea != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeArea.equals(other.nomeArea))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
-	
+
+	public static void main(String[] args) {
+		String teste = "|natan|teste|bola|";
+		List<String> teste2 = (List<String>) Arrays.asList(teste
+				.split("|"));
+		teste2.get(0);
+		System.out.println(teste2);
+	}
+
 }
