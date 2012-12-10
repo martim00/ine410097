@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Table;
 
 import org.junit.Test;
+
+import tablelize.Fixture;
 
 import domain.AreaConhecimento;
 import domain.Curso;
@@ -34,7 +37,7 @@ public class QlqrCoisaTest {
 	@Test
 	public void testeEpossivelAdicionarUmaFaseNumCurso() {
 		Curso curso = new Curso();
-		Fase fase = new Fase();
+		Fase fase = new Fase(1);
 		curso.addFase(fase);
 
 		assertEquals(1, curso.getFases().size());
@@ -42,7 +45,7 @@ public class QlqrCoisaTest {
 
 	@Test
 	public void testeUmaFaseTemDisciplinas() {
-		Fase fase = new Fase();
+		Fase fase = new Fase(1);
 
 		assertEquals(0, fase.getDisciplinas().size());
 
@@ -114,7 +117,7 @@ public class QlqrCoisaTest {
 
 		curso.addProfessor(professor);
 
-		Fase fase = new Fase();
+		Fase fase = new Fase(1);
 		Disciplina disciplina = new Disciplina(area, "");
 		fase.addDisciplina(disciplina);
 
@@ -234,7 +237,7 @@ public class QlqrCoisaTest {
 				.withNome("Introducao a SO").build());
 
 		List<Fase> fases = new ArrayList<Fase>();
-		Fase fase = new Fase();
+		Fase fase = new Fase(1);
 		fase.addDisciplinas(disciplinas);
 		fases.add(fase);
 
@@ -257,7 +260,6 @@ public class QlqrCoisaTest {
 		assertEquals("Joao", tercaFeiraPrimeiroHorario.getProfessor().getNome());
 		assertEquals("Introducao a SO", tercaFeiraPrimeiroHorario
 				.getDisciplina().getNome());
-
 	}
 
 	@Test()
@@ -268,23 +270,113 @@ public class QlqrCoisaTest {
 		professor.addAreaDeAtuacao(areaAtuacao);
 
 		assertEquals(true, professor.atuaNaArea(areaAtuacao));
-
 	}
+	
+	private class AlocacaoFixture extends Fixture {
 
-	@Test
-	public void testSave() {
-		try {
-			EntityManager entityManager = Persistence
-					.createEntityManagerFactory("teste.agil")
-					.createEntityManager();
-			AreaConhecimento area = new AreaConhecimento("teste");
-			entityManager.getTransaction().begin();
-			entityManager.persist(area);
-			entityManager.getTransaction().commit();
-			entityManager.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		private Curso curso = new Curso();
+		
+		@Override
+		public void execute() throws Exception {
+			
+			List<tablelize.Table> tables = this.getTablesWithName("professor");
+			
+			for (tablelize.Table table : tables) {
+				
+				String nome = table.getCell("nome", 0);
+				Professor professor = new Professor(nome);
+				curso.addProfessor(professor);
+				
+				tablelize.Table areas = this.getTableWithArg("area do professor", 0, nome);
+				for (int i = 0; i < areas.rowsCount(); i++) {
+					String nomeArea = areas.getCell("area", i);
+					professor.addAreaDeAtuacao(new AreaConhecimento(nomeArea));
+				}
+				
+				tablelize.Table horarios = this.getTableWithArg("horarios do professor", 0, nome);
+				for (int i = 0; i < horarios.rowsCount(); i++) {
+					String diaDaSemana= horarios.getCell("dia da semana", i);
+					String periodo = horarios.getCell("periodo", i);
+					
+					professor.addHorario(new Horario(parseDiaDaSemana(diaDaSemana), parseHorarioNoDia(periodo)));
+				}
+			}
+			
+			tables = this.getTablesWithName("fase");
+			for (tablelize.Table table : tables) {
+				
+				String numeroFase = table.getTableArgAt(0);
+				
+				Fase fase = new Fase(Integer.parseInt(numeroFase));
+				
+				for (int i = 0; i < table.rowsCount(); i++) {
+					
+					String nome = table.getCell("disciplina", i);
+					String area = table.getCell("area", i);
+					 
+					fase.addDisciplina(new Disciplina(new AreaConhecimento(area), nome));
+				}
+				
+				curso.addFase(fase);
+			}
 		}
+		
+		private DiaDaSemana parseDiaDaSemana(String str) throws Exception {
+			if (str.equals("segunda"))
+				return DiaDaSemana.SEGUNDA_FEIRA;
+			else if (str.equals("terca"))
+				return DiaDaSemana.TERCA_FEIRA;
+			else if (str.equals("quarta")) 
+				return DiaDaSemana.QUARTA_FEIRA;
+			else if (str.equals("quinta")) 
+				return DiaDaSemana.QUINTA_FEIRA;
+			else if (str.equals("sexta")) 
+				return DiaDaSemana.SEXTA_FEIRA;
+				
+			throw new Exception("cant parse dia da semana");
+		}
+		
+		private HorarioNoDia parseHorarioNoDia(String str) throws Exception {
+			if (str.equals("primeiro"))
+				return HorarioNoDia.PRIMEIRO_HORARIO;
+			if (str.equals("segundo"))
+				return HorarioNoDia.SEGUNDO_HORARIO;
+			if (str.equals("terceiro"))
+				return HorarioNoDia.TERCEIRO_HORARIO;
+			if (str.equals("quarto"))
+				return HorarioNoDia.QUARTO_HORARIO;
+			
+			throw new Exception("cant parse horario no dia");
+			
+		}
+		
 	}
+	
+	@Test
+	public void testAlgoritmo() throws Exception {
+		
+		AlocacaoFixture fixture = new AlocacaoFixture();
+//		String file = new File(".").getCanonicalPath();
+//		System.out.println(file);
+		fixture.LoadingDataFromFile("src/teste/teste.txt");
+		
+		
+	}
+
+//	@Test
+//	public void testSave() {
+//		try {
+//			EntityManager entityManager = Persistence
+//					.createEntityManagerFactory("teste.agil")
+//					.createEntityManager();
+//			AreaConhecimento area = new AreaConhecimento("teste");
+//			entityManager.getTransaction().begin();
+//			entityManager.persist(area);
+//			entityManager.getTransaction().commit();
+//			entityManager.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

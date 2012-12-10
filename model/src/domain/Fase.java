@@ -8,6 +8,16 @@ public class Fase {
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
 	private GradeHorario grade = new GradeHorario();
+	
+	private int numeroFase = 0;
+	
+	public Fase(int numeroFase) {
+		this.numeroFase = numeroFase;
+	}
+	
+	public int getNumeroFase() {
+		return this.numeroFase;
+	}
 
 	public List<Disciplina> getDisciplinas() {
 
