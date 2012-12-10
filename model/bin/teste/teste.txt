@@ -1,0 +1,29 @@
+|professor|
+|nome|
+|joao|
+
+|area do professor|joao|
+|area|
+|SO|
+|BD|
+
+|horarios do professor|joao|
+|dia da semana|periodo|
+|segunda|primeiro|
+|terca|segundo|
+
+
+|fase|1|
+|disciplina|area|
+|Introducao a SO|SO|
+|Introducao a BD|BD|
+
+
+|grade resultante da fase|1|
+|segunda|terca|quarta|quinta|sexta|
+|Introducao a SO|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+
+
