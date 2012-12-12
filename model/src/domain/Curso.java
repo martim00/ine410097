@@ -37,7 +37,10 @@ public class Curso {
 		
 		for (Professor professor : professores) {
 			
-			if (professor.atuaNaArea(disciplina.getArea()) && professor.temHorarioDisponivel()) {
+			boolean atuaNaArea = professor.atuaNaArea(disciplina.getArea());
+			boolean professorTemHorarioDisponivel = professor.temHorarioDisponivel();
+			
+			if (atuaNaArea && professorTemHorarioDisponivel) {
 				
 				List<Horario> horariosDisponiveis = professor.getHorariosDisponiveis();
 				
@@ -48,6 +51,7 @@ public class Curso {
 						professor.alocaHorario(horarioDisponivel);
 						disciplina.addHorario(horarioDisponivel);
 						fase.alocaHorarioParaDisciplina(horarioDisponivel, disciplina, professor);
+						break;
 					}
 				}
 				
@@ -55,7 +59,7 @@ public class Curso {
 			}
 		}
 		
-		throw new ProfessorNaoEncontradoParaDisciplinaException();
+//		throw new ProfessorNaoEncontradoParaDisciplinaException();
 		
 	}
 

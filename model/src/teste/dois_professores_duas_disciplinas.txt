@@ -1,0 +1,51 @@
+|professor|
+|nome|
+|joao|
+
+|area do professor|joao|
+|area|
+|BD|
+
+|horarios do professor|joao|
+|dia da semana|periodo|
+|segunda|primeiro|
+|terca|segundo|
+
+|professor|
+|nome|
+|jose|
+
+|area do professor|jose|
+|area|
+|SO|
+
+|horarios do professor|jose|
+|dia da semana|periodo|
+|segunda|primeiro|
+|terca|segundo|
+
+
+|fase|1|
+|disciplina|area|
+|Introducao a SO|SO|
+|Introducao a BD|BD|
+
+
+|grade resultante da fase|1|
+|segunda|terca|quarta|quinta|sexta|
+|Introducao a SO|x|x|x|x|
+|x|Introducao a BD|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+
+
+|professor da disciplina|Introducao a SO|
+|professor|
+|jose|
+
+|professor da disciplina|Introducao a BD|
+|professor|
+|joao|
+
+
+
