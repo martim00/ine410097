@@ -12,4 +12,28 @@
   <managed-bean-class>managebean.DisciplinaBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>mainBean</managed-bean-name>
+  <managed-bean-class>managebean.MainBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>areaBean</managed-bean-name>
+  <managed-bean-class>managebean.AreaConhecimentoBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/pArea.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>inserirCurso</from-outcome>
+   <to-view-id>/AreaConhecimento.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/AreaConhecimento.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>retornaCurso</from-outcome>
+   <to-view-id>/pArea.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
 </faces-config>

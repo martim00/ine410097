@@ -11,9 +11,9 @@
 		<h:form id="Conhecimento">
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Área de Conhecimento:"/>
-				<p:inputText/>
+				<p:inputText value="#{areaBean.areaSelecionada.nomeArea}"/>
 				<p:row colspan="2">
-					<p:commandButton value="Cadatrar" style="float:right"/>
+					<p:commandButton value="Cadatrar" style="float:right" action="#{areaBean.cadastrar}"/>
 				</p:row>
 			</h:panelGrid>
 		</h:form>

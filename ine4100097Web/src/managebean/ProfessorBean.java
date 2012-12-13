@@ -5,34 +5,37 @@ import java.util.List;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
 
+import dao.AreaConhecimentoDAO;
+import domain.AreaConhecimento;
+
 
 public class ProfessorBean {
 	
-	private DualListModel<String> areaConhecimento;
+	private DualListModel<AreaConhecimento> areaConhecimento;
+	private AreaConhecimentoDAO areaDao;
 	
 	public ProfessorBean() {
-		List<String> conhecimentoTarget = new ArrayList<String>();
-		List<String> conhecimentoSource = new ArrayList<String>();
 		
-		conhecimentoSource.add("Banco de Dados");
-		conhecimentoSource.add("Sistemas Distribuidos");
-		conhecimentoSource.add("Engenharia do Software");
-		conhecimentoSource.add("Inteligência Artificial");
+		areaDao = new AreaConhecimentoDAO();
 		
-		setAreaConhecimento(new DualListModel<String>(conhecimentoSource, conhecimentoTarget));
+		List<AreaConhecimento> conhecimentoTarget = new ArrayList<AreaConhecimento>();
+		List<AreaConhecimento> conhecimentoSource = areaDao.selectAll();
+		
+		setAreaConhecimento(new DualListModel<AreaConhecimento>(conhecimentoSource, conhecimentoTarget));
+		
 	}
 
 	/**
 	 * @return the areaConhecimento
 	 */
-	public DualListModel<String> getAreaConhecimento() {
+	public DualListModel<AreaConhecimento> getAreaConhecimento() {
 		return areaConhecimento;
 	}
 
 	/**
 	 * @param areaConhecimento the areaConhecimento to set
 	 */
-	public void setAreaConhecimento(DualListModel<String> areaConhecimento) {
+	public void setAreaConhecimento(DualListModel<AreaConhecimento> areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
 	}
 	

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<f:view>
+		<h:form id="Main">
+			<p:panel header="Adicionar">
+				<p:commandButton value="Curso" onclick="dlg.show();return false;"  ajax="false"/>
+				<p:commandButton value="Disciplina" onclick="dlgDisciplina.show(); return false;" ajax="false"/>
+				<p:commandButton value="Professor" onclick="dlgProfessor.show(); return false;" ajax="false"/>
+				<p:commandButton value="Area de conhecimento" onclick="dlgArea.show(); return false;" ajax="false"/>
+			</p:panel>
+			
+			<p:dialog id="dlgCurso" widgetVar="dlg" header="teste" appendToBody="true">
+				<h:form id="form1"> 
+					<ui:include src="/Curso.xhtml"/>
+					<p:commandButton id="commandbutton1" value="Cadastrar" 
+                                 oncomplete="dlg.hide();"/>
+				</h:form>
+			</p:dialog>
+			
+			<p:dialog id="dlgDisciplina" widgetVar="dlgDisciplina" header="teste" appendToBody="true">
+				<h:form id="form2"> 
+					<ui:include src="/Disciplina.xhtml"/>
+					<p:commandButton id="commandbutton2" value="Cadastrar" 
+                                 oncomplete="dlgDisciplina.hide();"/>
+				</h:form>
+			</p:dialog>
+			
+			<p:dialog id="dlgProfessor" widgetVar="dlgProfessor" header="teste" appendToBody="true">
+				<h:form id="form3"> 
+					<ui:include src="/Professor.xhtml"/>
+					<p:commandButton id="commandbutton3" value="Cadastrar" 
+                                 oncomplete="dlgProfessor.hide();"/>
+				</h:form>
+			</p:dialog>
+			
+			<p:dialog id="dlgArea" widgetVar="dlgArea" header="Cadastrar Area de conhecimento" appendToBody="true">
+				<h:form id="form4"> 
+					<ui:include src="/AreaConhecimento.xhtml"/>
+					<p:commandButton id="commandbutton4" value="Cadastrar" 
+                                 oncomplete="dlgArea.hide();"/>
+				</h:form>
+			</p:dialog>
+
+			
+
+		</h:form>
+	</f:view>
+</h:body>
+</html>

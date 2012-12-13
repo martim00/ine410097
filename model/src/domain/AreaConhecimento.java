@@ -1,15 +1,10 @@
 package domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
-@Table(name="AREA")
-public class AreaConhecimento {
+public class AreaConhecimento implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private String nomeArea = null;
 
@@ -18,10 +13,6 @@ public class AreaConhecimento {
 	public AreaConhecimento(String nomeArea) {		
 		this.setNomeArea(nomeArea);
 	}
-	
-	@Id
-	@GeneratedValue
-	@Column(name="ID")
 	public long getId() {
 		return id;
 	}
@@ -30,7 +21,6 @@ public class AreaConhecimento {
 		this.id = id;
 	}
 
-	@Column(name="NAME", nullable=false)
 	public String getNomeArea() {
 		return nomeArea;
 	}
@@ -63,6 +53,12 @@ public class AreaConhecimento {
 		} else if (!nomeArea.equals(other.nomeArea))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNomeArea();
 	}
 	
 }

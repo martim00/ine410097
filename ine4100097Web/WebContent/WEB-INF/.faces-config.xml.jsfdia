@@ -2,4 +2,21 @@
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#Curso.xhtml" PATH="/Curso.xhtml"
   SHAPE="73,99,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pArea.xhtml" PATH="/pArea.xhtml"
+  SHAPE="128,176,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pArea.xhtml:0" NAME="item"
+   PATH="/pArea.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inserirCurso::#AreaConhecimento.xhtml"
+    NAME="output" PATH="/AreaConhecimento.xhtml"
+    TARGET="rules:#AreaConhecimento.xhtml" TITLE="inserirCurso" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#AreaConhecimento.xhtml"
+  PATH="/AreaConhecimento.xhtml" SHAPE="296,176,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#AreaConhecimento.xhtml:0" NAME="item"
+   PATH="/AreaConhecimento.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="retornaCurso::#pArea.xhtml" NAME="output"
+    PATH="/pArea.xhtml" TARGET="rules:#pArea.xhtml" TITLE="retornaCurso" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
