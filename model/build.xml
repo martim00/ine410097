@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
+	      Any modifications will be overwritten.
+	      To include a user specific buildfile here, simply create one in the same
+	      directory with the processing instruction <?eclipse.ant.import?>
+	      as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="Agil">
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="../../../../../Program Files (x86)/Eclipse" />
@@ -14,22 +14,22 @@
 		<pathelement location="lib/junit.jar" />
 		<pathelement location="lib/org.hamcrest.core_1.1.0.v20090501071000.jar" />
 	</path>
-    <path id="EAR Libraries.libraryclasspath"/>
+	<path id="EAR Libraries.libraryclasspath"/>
 	<path id="Agil.classpath">
 		<pathelement location="bin" />
 		<path refid="JUnit 4.libraryclasspath" />
-        <pathelement location="lib/hibernate3.jar"/>
-        <pathelement location="lib/antlr-2.7.6.jar"/>
-        <pathelement location="lib/commons-collections-3.1.jar"/>
-        <pathelement location="lib/dom4j-1.6.1.jar"/>
-        <pathelement location="lib/javassist-3.12.0.GA.jar"/>
-        <pathelement location="lib/jta-1.1.jar"/>
-        <pathelement location="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-        <pathelement location="lib/slf4j-api-1.6.1.jar"/>
-        <pathelement location="lib/slf4j-simple-1.6.1.jar"/>
-        <pathelement location="lib/mysql-connector-java-5.1.22-bin.jar"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="lib/tablelize_it.jar"/>
+		<pathelement location="lib/hibernate3.jar"/>
+		<pathelement location="lib/antlr-2.7.6.jar"/>
+		<pathelement location="lib/commons-collections-3.1.jar"/>
+		<pathelement location="lib/dom4j-1.6.1.jar"/>
+		<pathelement location="lib/javassist-3.12.0.GA.jar"/>
+		<pathelement location="lib/jta-1.1.jar"/>
+		<pathelement location="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+		<pathelement location="lib/slf4j-api-1.6.1.jar"/>
+		<pathelement location="lib/slf4j-simple-1.6.1.jar"/>
+		<pathelement location="lib/mysql-connector-java-5.1.22-bin.jar"/>
+		<path refid="EAR Libraries.libraryclasspath"/>
+		<pathelement location="lib/tablelize_it.jar"/>
 	</path>
 	<target name="init">
 		<mkdir dir="bin" />
@@ -76,4 +76,30 @@
 			<classpath refid="Agil.classpath" />
 		</junit>
 	</target>
+
+
+
+	<!-- directory that contains emma.jar and emma_ant.jar: -->
+	  <property name="emma.dir" value="${basedir}/lib" />
+
+	  <path id="emma.lib" >
+		  <pathelement location="${emma.dir}/emma.jar" />
+		  <pathelement location="${emma.dir}/emma_ant.jar" />
+	  </path>
+
+	  <taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+
+	<target name="emma" description="turns on EMMA's on-the-fly instrumentation mode" >
+		<property name="emma.enabled" value="true" />
+	</target>
+
+	<target name="build-and-test-coverage" depends="build" description="runs the examples" >
+		<emmajava enabled="${emma.enabled}" libclasspathref="emma.lib" classname="teste.Main" classpathref= "Agil.classpath">
+		</emmajava>
+
+		<loadfile property="mytext" srcFile="${basedir}/coverage.txt"/> 
+
+		<echo>${mytext}</echo> 
+		
+	  </target>
 </project>

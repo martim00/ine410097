@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import tablelize.Fixture;
@@ -26,7 +28,7 @@ import domain.HorarioNoDia;
 import domain.Professor;
 import domain.ProfessorNaoEncontradoParaDisciplinaException;
 
-public class QlqrCoisaTest {
+public class QlqrCoisaTest extends TestCase {
 
 	@Test
 	public void testeUmCursoNovoTemZeroFases() {
@@ -447,7 +449,7 @@ public class QlqrCoisaTest {
 	@Test
 	public void testAlgoritmo() throws Exception {
 		
-		File folder = new File("src/teste");
+		File folder = new File("model/src/teste");
 		File[] listOfFiles = folder.listFiles();
 		
 		System.out.println("listOffiles: " + listOfFiles);

@@ -70,12 +70,5 @@ public class AreaConhecimento {
 		return true;
 	}
 
-	public static void main(String[] args) {
-		String teste = "|natan|teste|bola|";
-		List<String> teste2 = (List<String>) Arrays.asList(teste
-				.split("|"));
-		teste2.get(0);
-		System.out.println(teste2);
-	}
 
 }

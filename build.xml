@@ -3,6 +3,6 @@
 <project basedir="." default="build" name="Agil">
 	
 	<target description="build and test all projects" name="build-and-test">
-		<ant dir="model" target="build-and-test" />
+		<ant dir="model" target="build-and-test-coverage" />
 	</target>
 </project>
