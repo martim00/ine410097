@@ -449,6 +449,9 @@ public class QlqrCoisaTest {
 		
 		File folder = new File("src/teste");
 		File[] listOfFiles = folder.listFiles();
+		
+		System.out.println("listOffiles: " + listOfFiles);
+		System.out.println(new File(".").getCanonicalPath());
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			File file = listOfFiles[i];
@@ -457,9 +460,7 @@ public class QlqrCoisaTest {
 				AlocacaoFixture fixture = new AlocacaoFixture();
 				fixture.LoadingDataFromFile(file.getAbsolutePath());
 			} 
-		}}
-		
-		
+		}
 	}
 
 //	@Test
@@ -477,3 +478,5 @@ public class QlqrCoisaTest {
 //			e.printStackTrace();
 //		}
 //	}
+
+}
