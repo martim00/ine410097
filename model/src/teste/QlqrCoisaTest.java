@@ -449,7 +449,7 @@ public class QlqrCoisaTest extends TestCase {
 	@Test
 	public void testAlgoritmo() throws Exception {
 		
-		File folder = new File("model/src/teste");
+		File folder = new File("src/teste");
 		File[] listOfFiles = folder.listFiles();
 		
 		System.out.println("listOffiles: " + listOfFiles);

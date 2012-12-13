@@ -93,8 +93,8 @@
 		<property name="emma.enabled" value="true" />
 	</target>
 
-	<target name="build-and-test-coverage" depends="build" description="runs the examples" >
-		<emmajava enabled="${emma.enabled}" libclasspathref="emma.lib" classname="teste.Main" classpathref= "Agil.classpath">
+	<target name="build-and-test-coverage" depends="build-and-test" description="runs the examples" >
+		<emmajava enabled="true" libclasspathref="emma.lib" classname="teste.Main" classpathref= "Agil.classpath">
 		</emmajava>
 
 		<loadfile property="mytext" srcFile="${basedir}/coverage.txt"/> 
