@@ -272,6 +272,28 @@ public class QlqrCoisaTest {
 
 		assertEquals(true, professor.atuaNaArea(areaAtuacao));
 	}
+
+//	@Test
+//	public void testCRUD() {
+		// try {
+		// EntityManager entityManager = Persistence
+		// .createEntityManagerFactory("teste.agil")
+		// .createEntityManager();
+		// AreaConhecimento area = new AreaConhecimento("teste");
+		// entityManager.getTransaction().begin();
+		// entityManager.persist(area);
+		// entityManager.getTransaction().commit();
+		// entityManager.close();
+		// HibernateUtil.save(area);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// Object entity = HibernateUtil.load(AreaConhecimento.class, 10l);
+		// System.out.println(entity);
+//		List<Object> entities = HibernateUtil.find(AreaConhecimento.class);
+//		System.out.println(entities);
+//		 HibernateUtil.delete(AreaConhecimento.class, 10l);
+//	}
 	
 	private static class AlocacaoFixture extends Fixture {
 
