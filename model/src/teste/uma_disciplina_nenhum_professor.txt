@@ -1,0 +1,15 @@
+|fase|1|
+|disciplina|area|
+|Introducao a SO|SO|
+
+
+|grade resultante da fase|1|
+|segunda|terca|quarta|quinta|sexta|
+|x|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+
+
+
+

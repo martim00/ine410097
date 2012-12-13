@@ -22,8 +22,17 @@
 |grade resultante da fase|1|
 |segunda|terca|quarta|quinta|sexta|
 |Introducao a SO|x|x|x|x|
+|x|Introducao a BD|x|x|x|
 |x|x|x|x|x|
 |x|x|x|x|x|
-|x|x|x|x|x|
+
+
+|professor da disciplina|Introducao a SO|
+|professor|
+|joao|
+
+|professor da disciplina|Introducao a BD|
+|professor|
+|joao|
 
 

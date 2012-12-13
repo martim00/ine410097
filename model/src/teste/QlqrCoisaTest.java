@@ -2,12 +2,15 @@ package teste;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
+
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -25,7 +28,7 @@ import domain.HorarioNoDia;
 import domain.Professor;
 import domain.ProfessorNaoEncontradoParaDisciplinaException;
 
-public class QlqrCoisaTest {
+public class QlqrCoisaTest extends TestCase {
 
 	@Test
 	public void testeUmCursoNovoTemZeroFases() {
@@ -271,15 +274,125 @@ public class QlqrCoisaTest {
 
 		assertEquals(true, professor.atuaNaArea(areaAtuacao));
 	}
+
+//	@Test
+//	public void testCRUD() {
+		// try {
+		// EntityManager entityManager = Persistence
+		// .createEntityManagerFactory("teste.agil")
+		// .createEntityManager();
+		// AreaConhecimento area = new AreaConhecimento("teste");
+		// entityManager.getTransaction().begin();
+		// entityManager.persist(area);
+		// entityManager.getTransaction().commit();
+		// entityManager.close();
+		// HibernateUtil.save(area);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// Object entity = HibernateUtil.load(AreaConhecimento.class, 10l);
+		// System.out.println(entity);
+//		List<Object> entities = HibernateUtil.find(AreaConhecimento.class);
+//		System.out.println(entities);
+//		 HibernateUtil.delete(AreaConhecimento.class, 10l);
+//	}
 	
-	private class AlocacaoFixture extends Fixture {
+	private static class AlocacaoFixture extends Fixture {
 
 		private Curso curso = new Curso();
 		
 		@Override
 		public void execute() throws Exception {
 			
-			List<tablelize.Table> tables = this.getTablesWithName("professor");
+			setupProfessores();
+			setupAndAssertDisciplinas();
+			setupAndAssertGrade();
+			
+		}
+
+		private void setupAndAssertGrade()
+				throws ProfessorNaoEncontradoParaDisciplinaException, Exception {
+			
+			List<tablelize.Table> tables;
+			
+			List<Fase> fases = curso.executeAlocacao();
+			
+			tables = this.getTablesWithName("grade resultante da fase");
+			
+			assertStr(fases.size(), tables.size());
+			
+			for (Fase fase : fases) {
+				
+				int numeroFase = fase.getNumeroFase();
+				
+				tablelize.Table table = this.getTableWithArg("grade resultante da fase", 0, Integer.toString(numeroFase));
+				
+				HorarioAula[][] grade = fase.getGradeHorario().getGradeHoraria();
+				
+				assert(4 == table.rowsCount());
+				
+				for (int i = 0; i < table.rowsCount(); i++) {
+					
+					assertHorarioAula(table, grade, i, "segunda");
+					assertHorarioAula(table, grade, i, "terca");
+					assertHorarioAula(table, grade, i, "quarta");
+					assertHorarioAula(table, grade, i, "quinta");
+					assertHorarioAula(table, grade, i, "sexta");
+				}
+				
+			}
+		}
+		static <T> void assertStr(T expected, T actual) throws Exception {
+			if (!expected.equals(actual))
+				throw new Exception("assertion failed!\n" + "expected: " + expected + "\nactual: " + actual);
+		}
+
+		private void assertHorarioAula(tablelize.Table table, HorarioAula[][] grade, int periodo, String diaDaSemana) throws Exception {
+			
+			String nomeDisciplinaExpected = table.getCell(diaDaSemana, periodo);
+			HorarioAula horarioAtual = grade[this.parseDiaDaSemana(diaDaSemana).ordinal()][periodo];
+			String nomeDisciplinaAtual = horarioAtual == null ? "x" : horarioAtual.getDisciplina().getNome();
+			assertStr(nomeDisciplinaExpected, nomeDisciplinaAtual);
+			
+			if (horarioAtual == null)
+				return;		
+			
+			tablelize.Table professorPorDisciplina = this.getTableWithArg("professor da disciplina", 0, nomeDisciplinaAtual);
+			String nomeProfessor = professorPorDisciplina.getCell("professor", 0);
+			assertStr(nomeProfessor, horarioAtual.getProfessor().getNome());
+			
+		}
+
+		private void setupAndAssertDisciplinas() throws Exception {
+			List<tablelize.Table> tables;
+			tables = this.getTablesWithName("fase");
+			for (tablelize.Table table : tables) {
+				
+				String numeroFase = table.getTableArgAt(0);
+				
+				Fase fase = new Fase(Integer.parseInt(numeroFase));
+				
+				for (int i = 0; i < table.rowsCount(); i++) {
+					
+					String nome = table.getCell("disciplina", i);
+					String area = table.getCell("area", i);
+					 
+					fase.addDisciplina(new Disciplina(new AreaConhecimento(area), nome));
+				}
+				
+				curso.addFase(fase);
+			}
+		}
+
+		private void setupProfessores() throws Exception {
+			
+			List<tablelize.Table> tables;
+			try {
+				tables = this.getTablesWithName("professor");
+			} catch (Exception e) {
+				
+				return;
+			}
 			
 			for (tablelize.Table table : tables) {
 				
@@ -300,24 +413,6 @@ public class QlqrCoisaTest {
 					
 					professor.addHorario(new Horario(parseDiaDaSemana(diaDaSemana), parseHorarioNoDia(periodo)));
 				}
-			}
-			
-			tables = this.getTablesWithName("fase");
-			for (tablelize.Table table : tables) {
-				
-				String numeroFase = table.getTableArgAt(0);
-				
-				Fase fase = new Fase(Integer.parseInt(numeroFase));
-				
-				for (int i = 0; i < table.rowsCount(); i++) {
-					
-					String nome = table.getCell("disciplina", i);
-					String area = table.getCell("area", i);
-					 
-					fase.addDisciplina(new Disciplina(new AreaConhecimento(area), nome));
-				}
-				
-				curso.addFase(fase);
 			}
 		}
 		
@@ -347,7 +442,6 @@ public class QlqrCoisaTest {
 				return HorarioNoDia.QUARTO_HORARIO;
 			
 			throw new Exception("cant parse horario no dia");
-			
 		}
 		
 	}
@@ -355,12 +449,20 @@ public class QlqrCoisaTest {
 	@Test
 	public void testAlgoritmo() throws Exception {
 		
-		AlocacaoFixture fixture = new AlocacaoFixture();
-//		String file = new File(".").getCanonicalPath();
-//		System.out.println(file);
-		fixture.LoadingDataFromFile("src/teste/teste.txt");
+		File folder = new File("src/teste");
+		File[] listOfFiles = folder.listFiles();
 		
-		
+		System.out.println("listOffiles: " + listOfFiles);
+		System.out.println(new File(".").getCanonicalPath());
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+			File file = listOfFiles[i];
+			if (file.isFile() && file.getPath().endsWith(".txt")) {
+				System.out.println("executing test from table -> " + file.getAbsolutePath());
+				AlocacaoFixture fixture = new AlocacaoFixture();
+				fixture.LoadingDataFromFile(file.getAbsolutePath());
+			} 
+		}
 	}
 
 //	@Test

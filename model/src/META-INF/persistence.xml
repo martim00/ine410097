@@ -2,6 +2,33 @@
 
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
 
+<<<<<<< HEAD
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+
+	version="1.0">
+
+	<persistence-unit name="imobiliaria" transaction-type="JTA">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<jta-data-source>java:/Agil</jta-data-source>
+
+		<properties>
+
+			<property name="hibernate.show_sql" value="true" />
+
+			<property name="hibernate.format_sql" value="false" />
+
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+		</properties>
+
+	</persistence-unit>
+=======
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
@@ -27,5 +54,6 @@
         </properties>
 
     </persistence-unit>
+>>>>>>> d29e9915c930833967d3563a82b64c2c15b6d5d5
 
 </persistence>

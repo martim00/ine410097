@@ -1,32 +1,38 @@
 package domain;
 
-import java.io.Serializable;
+public class AreaConhecimento {
 
-public class AreaConhecimento implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+
 	private long id;
-	private String nomeArea = null;
+	private String nome = null;
 
-	public AreaConhecimento() {}
-	
-	public AreaConhecimento(String nomeArea) {		
+	public AreaConhecimento() {
+	}
+
+	public AreaConhecimento(String nomeArea) {
 		this.setNomeArea(nomeArea);
 	}
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
+
 	public String getNomeArea() {
-		return nomeArea;
+		return nome;
+	}
+
+	public String getNome() {
+		return nome;
+
 	}
 
 	public void setNomeArea(String nomeArea) {
-		this.nomeArea = nomeArea;
+		this.nome = nomeArea;
 	}
 
 	@Override
@@ -34,7 +40,7 @@ public class AreaConhecimento implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((nomeArea == null) ? 0 : nomeArea.hashCode());
+				+ ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -47,10 +53,10 @@ public class AreaConhecimento implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		AreaConhecimento other = (AreaConhecimento) obj;
-		if (nomeArea == null) {
-			if (other.nomeArea != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeArea.equals(other.nomeArea))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
@@ -60,5 +66,5 @@ public class AreaConhecimento implements Serializable{
 		// TODO Auto-generated method stub
 		return this.getNomeArea();
 	}
-	
+
 }

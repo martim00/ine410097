@@ -1,0 +1,36 @@
+|professor|
+|nome|
+|joao|
+
+|area do professor|joao|
+|area|
+|BD|
+|SO|
+|Algoritmos|
+
+|horarios do professor|joao|
+|dia da semana|periodo|
+|segunda|primeiro|
+
+
+|fase|1|
+|disciplina|area|
+|Introducao a SO|SO|
+|Introducao a BD|BD|
+|Introducao a Algoritmos|Algoritmos|
+
+
+|grade resultante da fase|1|
+|segunda|terca|quarta|quinta|sexta|
+|Introducao a SO|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+|x|x|x|x|x|
+
+
+|professor da disciplina|Introducao a SO|
+|professor|
+|joao|
+
+
+

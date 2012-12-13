@@ -3,6 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+//@Entity
+//@Table(name = "curso")
 public class Curso {
 	
 	private List<Fase> fases = new ArrayList<Fase>();
@@ -16,15 +21,25 @@ public class Curso {
 		this.professores.add(professor);
 	}
 
+	@OneToMany
+	@JoinColumn(name="id_fase")
 	public List<Fase> getFases() {
-		
 		return fases;
 	}
 
+	public void setFases(List<Fase> fases) {
+		this.fases = fases;
+	}
+	
+	@OneToMany
+	@JoinColumn(name="id_professor")
 	public List<Professor> getProfessores() {
 		return professores;
 	}
 	
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
 	
 	/**
 	 * Tenta alocar um professor para a disciplina passada. Leva em consideracao a area de atuacao do professor fecha com a area da disciplina 
@@ -37,7 +52,10 @@ public class Curso {
 		
 		for (Professor professor : professores) {
 			
-			if (professor.atuaNaArea(disciplina.getArea()) && professor.temHorarioDisponivel()) {
+			boolean atuaNaArea = professor.atuaNaArea(disciplina.getArea());
+			boolean professorTemHorarioDisponivel = professor.temHorarioDisponivel();
+			
+			if (atuaNaArea && professorTemHorarioDisponivel) {
 				
 				List<Horario> horariosDisponiveis = professor.getHorariosDisponiveis();
 				
@@ -48,6 +66,7 @@ public class Curso {
 						professor.alocaHorario(horarioDisponivel);
 						disciplina.addHorario(horarioDisponivel);
 						fase.alocaHorarioParaDisciplina(horarioDisponivel, disciplina, professor);
+						break;
 					}
 				}
 				
@@ -55,8 +74,7 @@ public class Curso {
 			}
 		}
 		
-		throw new ProfessorNaoEncontradoParaDisciplinaException();
-		
+//		throw new ProfessorNaoEncontradoParaDisciplinaException();
 	}
 
 	/**
