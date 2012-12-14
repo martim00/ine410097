@@ -17,7 +17,7 @@ public class AreaConhecimentoDAO {
 		connection = new ConectionJDBC().getConnection();
 	}
 
-<<<<<<< HEAD
+
 	public void insert(AreaConhecimento area) {
 		try {
 
@@ -58,54 +58,11 @@ public class AreaConhecimentoDAO {
 
 			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setString(1, String.valueOf(area.getId()));
-
-=======
-	public void insert(AreaConhecimento area){
-		try {
-
-			String sql = "insert into Area(nome) values(?)";
-
-			PreparedStatement stm = connection.prepareStatement(sql);
-			stm.setString(1, area.getNomeArea());
 			
 			stm.execute();
 			stm.close();
 
 		}catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public void update(AreaConhecimento area){
-		try {
-
-			String sql = "update Area set nome = ? where idArea = ?";
-
-			PreparedStatement stm = connection.prepareStatement(sql);
-			stm.setString(1, area.getNomeArea());
-			stm.setString(2, String.valueOf(area.getId()));
-			
-			stm.execute();
-			stm.close();
-
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public void delete(AreaConhecimento area){
-		try {
-
-			String sql = "delete from Area where idArea = ?";
-
-			PreparedStatement stm = connection.prepareStatement(sql);
-			stm.setString(1, String.valueOf(area.getId()));
-			
->>>>>>> Mudanças Web MAdrugada
-			stm.execute();
-			stm.close();
-
-		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -113,12 +70,9 @@ public class AreaConhecimentoDAO {
 	public ArrayList<AreaConhecimento> selectAll() {
 		try {
 			ArrayList<AreaConhecimento> areas = new ArrayList<AreaConhecimento>();
-<<<<<<< HEAD
+
 			PreparedStatement stm = connection
 					.prepareStatement("select * from area order by nome");
-=======
-			PreparedStatement stm = connection.prepareStatement("select * from Area order by nome");
->>>>>>> Mudanças Web MAdrugada
 
 			ResultSet rs = stm.executeQuery();
 
@@ -138,9 +92,5 @@ public class AreaConhecimentoDAO {
 			throw new RuntimeException(e);
 		}
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> Mudanças Web MAdrugada
 }
