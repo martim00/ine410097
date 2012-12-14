@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#Curso.xhtml" PATH="/Curso.xhtml"
-  SHAPE="73,99,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="304,72,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Curso.xhtml:0" NAME="item"
+   PATH="/Curso.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="retornaCurso::#pCurso.xhtml" NAME="output"
+    PATH="/pCurso.xhtml" TARGET="rules:#pCurso.xhtml"
+    TITLE="retornaCurso" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pArea.xhtml" PATH="/pArea.xhtml"
-  SHAPE="128,176,50,25" model-entity="JSFProcessGroup">
+  SHAPE="128,224,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#pArea.xhtml:0" NAME="item"
    PATH="/pArea.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="inserirCurso::#AreaConhecimento.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="inserirArea::#AreaConhecimento.xhtml"
     NAME="output" PATH="/AreaConhecimento.xhtml"
-    TARGET="rules:#AreaConhecimento.xhtml" TITLE="inserirCurso" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#AreaConhecimento.xhtml" TITLE="inserirArea" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="atualizaArea::#pArea.xhtml" NAME="output1"
+    PATH="/pArea.xhtml" TARGET="rules:#pArea.xhtml" TITLE="atualizaArea" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#AreaConhecimento.xhtml"
   PATH="/AreaConhecimento.xhtml" SHAPE="296,176,50,25" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#AreaConhecimento.xhtml:0" NAME="item"
    PATH="/AreaConhecimento.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="retornaCurso::#pArea.xhtml" NAME="output"
-    PATH="/pArea.xhtml" TARGET="rules:#pArea.xhtml" TITLE="retornaCurso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="retornaArea::#pArea.xhtml" NAME="output"
+    PATH="/pArea.xhtml" TARGET="rules:#pArea.xhtml" TITLE="retornaArea" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pCurso.xhtml" PATH="/pCurso.xhtml"
+  SHAPE="112,72,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pCurso.xhtml:0" NAME="item"
+   PATH="/pCurso.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inserirCurso::#Curso.xhtml" NAME="output"
+    PATH="/Curso.xhtml" TARGET="rules:#Curso.xhtml" TITLE="inserirCurso" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

@@ -84,16 +84,33 @@ public class AreaConhecimentoBean {
 		// areaSelecionada = new AreaConhecimento();
 		listaAreas = areaDao.selectAll();
 
+<<<<<<< HEAD
 		return "retornaArea";
 	}
+=======
+		return "atualizaArea";
+	}
+	
+
+>>>>>>> Mudanças Web MAdrugada
 
 	public String excluir() {
 		areaDao.delete(areaSelecionada);
 
+<<<<<<< HEAD
 		// areaSelecionada = new AreaConhecimento();
 		listaAreas = areaDao.selectAll();
 
 		return "excluirArea";
+=======
+
+		// areaSelecionada = new AreaConhecimento();
+		listaAreas = areaDao.selectAll();
+
+		return "atualizaArea";
+
+
+>>>>>>> Mudanças Web MAdrugada
 	}
 
 }

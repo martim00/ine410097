@@ -25,15 +25,33 @@
  <navigation-rule>
   <from-view-id>/pArea.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>inserirCurso</from-outcome>
+   <from-outcome>inserirArea</from-outcome>
    <to-view-id>/AreaConhecimento.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>atualizaArea</from-outcome>
+   <to-view-id>/pArea.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/AreaConhecimento.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>retornaCurso</from-outcome>
+   <from-outcome>retornaArea</from-outcome>
    <to-view-id>/pArea.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pCurso.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>inserirCurso</from-outcome>
+   <to-view-id>/Curso.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Curso.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>retornaCurso</from-outcome>
+   <to-view-id>/pCurso.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>

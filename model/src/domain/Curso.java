@@ -6,8 +6,7 @@ import java.util.List;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-//@Entity
-//@Table(name = "curso")
+
 public class Curso {
 	
 	private List<Fase> fases = new ArrayList<Fase>();

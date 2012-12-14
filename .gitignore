@@ -2,3 +2,7 @@
 */bin
 .gitattributes
 .metadata
+
+model/src/META-INF/persistence.xml
+
+model/src/META-INF/persistence.xml

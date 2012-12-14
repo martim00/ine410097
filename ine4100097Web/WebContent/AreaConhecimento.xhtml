@@ -1,19 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
+<h:head></h:head>
 <h:body>
 	<f:view>
 		<h:form id="Conhecimento">
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Área de Conhecimento:"/>
-				<p:inputText value="#{areaBean.areaSelecionada.nomeArea}"/>
+				<p:outputLabel value="Área de Conhecimento:" />
+				<p:inputText value="#{areaBean.areaSelecionada.nomeArea}" />
 				<p:row colspan="2">
-					<p:commandButton value="Cadatrar" style="float:right" action="#{areaBean.cadastrar}"/>
+					<p:commandButton value="Cadatrar" style="float:right"
+						action="#{areaBean.cadastrar}" />
 				</p:row>
 			</h:panelGrid>
 		</h:form>

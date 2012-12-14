@@ -6,5 +6,11 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="Agil.jar" deploy-path="/lib" handle="module:/resource/Agil/Agil">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tablelize_it.jar" deploy-path="/lib" handle="module:/classpath/lib/Agil/lib/tablelize_it.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

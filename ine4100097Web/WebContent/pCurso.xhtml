@@ -9,41 +9,38 @@
 <h:body>
 	<f:view>
 		<h:form id="AreaForm">
-			<p:commandButton id="insert" value="Inserir"
-				action="#{areaBean.inserir()}" ajax="false">
+			<p:commandButton id="insert" value="Inserir"  ajax="false">
 			</p:commandButton>
 			<p:separator />
-			<p:dataTable var="area" value="#{areaBean.listaAreas}">
+			<p:dataTable var="curso" >
 				<p:column headerText="ID">
-					#{area.id}
 				</p:column>
-				<p:column headerText="Nome da Area de Conhecimento">
-					#{area.nomeArea}
+				<p:column headerText="Nome do Curso">
+				</p:column>
+				<p:column headerText="Numero de Fases">
 				</p:column>
 				<p:column style="width:4%">
 					<p:commandButton id="selectButton" update=":AreaForm:panel"
 						oncomplete="dialog.show()" icon="ui-icon-search" title="View">
-						<f:setPropertyActionListener value="#{area}"
+						<f:setPropertyActionListener value="#{curso}"
 							target="#{areaBean.areaSelecionada}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-			<p:dialog header="Detalhe Area Conhecimento" widgetVar="dialog"
+			<p:dialog header="Detalhe Curso" widgetVar="dialog"
 				resizable="false" id="areaDlg" showEffect="fade"
 				hideEffect="explode" modal="true">
 				<h:panelGrid id="panel" columns="2">
 					<h:outputText value="Codigo:" />
-					<p:inputText value="#{areaBean.areaSelecionada.id}" disabled="true"/>
+					<p:inputText value="" disabled="true"/>
 					<h:outputText value="Nome:" />
-					<p:inputText value="#{areaBean.areaSelecionada.nomeArea}" />
+					<p:inputText value="" />
+					<h:outputText value="Nº Fases:" />
+					<p:selectOneMenu>
+					</p:selectOneMenu>
 				</h:panelGrid>
-				<!-- <h:commandButton value="Atualizar" onclick="dialog.hide()" /> -->
-				<p:commandButton id="update" value="Atualizar"
-					action="#{areaBean.atualizar()}" onclick="dialog.hide()"
-					ajax="false" />
-				<!-- <h:commandButton value="Excluir" onclick="dialog.hide()" /> -->
-				<p:commandButton id="delete" value="Excluir"
-					action="#{areaBean.excluir()}" onclick="dialog.hide()" ajax="false" />
+				<h:commandButton value="Atualizar" onclick="dialog.hide()" />
+				<h:commandButton value="Excluir" onclick="dialog.hide()" />
 			</p:dialog>
 		</h:form>
 	</f:view>
